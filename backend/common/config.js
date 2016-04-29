@@ -5,7 +5,9 @@
 
 module.exports = {
 
-  githubApi: 'https://api.github.com',
+  // githubApi: 'https://api.github.com',
+  
+  githubApi:'http://localhost:9999/github',
 
   port: 10987,
 

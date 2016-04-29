@@ -11,26 +11,27 @@ router.get('/', function (req, res, next) {
 
 /* 获取用户star仓库 */
 router.get('/:userName/starred', function (req, res, next) {
-  var userName = req.params.userName;
+  let userName = req.params.userName;
+
   (async() => {
-    var starredAry = [],
-      page = 1,
-      data;
+    let starredAry = [],  // 存储收藏的仓库
+      page = 1,   // 请求分页
+      data;     // 每次请求的数据
     while (true) {
-      data = await fetch(Config.githubApi + '/users/' + userName + '/starred?pageSize=100&page=' + page)
+      data = await fetch(`${Config.githubApi}/users/${userName}/starred?pageSize=100&page=${page}`)
         .then(ret => ret.json());
-      console.log(data);
-      console.log(page);
-      if (!data) break;
-      page++;
+
+      if (!data.length) break;
+
       starredAry = starredAry.concat(data);
+      page++;
     }
     res.send({
       code: 0,
-      data: starredAry,
-      length: starredAry.length
+      data: starredAry
     })
   })();
+
 });
 
 module.exports = router;
