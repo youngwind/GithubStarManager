@@ -13,6 +13,7 @@ var cors = require('cors');
 var config = require('./common/config.js');
 
 var routes = require('./routes/index');
+var repos = require('./routes/repos');
 
 
 var app = express();
@@ -29,6 +30,7 @@ app.use(express.static(path.join(__dirname, 'public')));
 app.use(cors());
 
 app.use('/', routes);
+app.use('/repos', repos);
 
 // catch 404 and forward to error handler
 app.use(function (req, res, next) {
