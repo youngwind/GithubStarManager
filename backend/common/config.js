@@ -11,12 +11,8 @@ module.exports = {
 
   port: 10987,
 
-  // MySQL数据库联接配置
-  mysql: {
-    host: '127.0.0.1',
-    user: 'root',
-    password: '',
-    database: 'todo',
-    port: 3306
+  // 数据库配置
+  mongo:{
+    url:'mongodb://localhost:27017/github'
   }
 };

@@ -31,6 +31,7 @@
     "github4": "^0.6.0",
     "isomorphic-fetch": "^2.2.1",
     "lodash": "^4.6.1",
+    "mongodb": "^2.1.18",
     "morgan": "~1.6.1",
     "mysql": "^2.10.2",
     "serve-favicon": "~2.3.0"
