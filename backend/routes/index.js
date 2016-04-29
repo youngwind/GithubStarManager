@@ -15,6 +15,8 @@ router.get('/', function (req, res, next) {
 router.get('/:userName/starred', function (req, res, next) {
   let userName = req.params.userName;
 
+  if (!userName) throw new Error('用户名为空');
+
   (async() => {
     let starredAry = [],  // 存储收藏的仓库
       page = 1,   // 请求分页
@@ -31,7 +33,7 @@ router.get('/:userName/starred', function (req, res, next) {
 
 
     var insertStarredRepos = function (db, callback) {
-      var collection = db.collection('github');
+      var collection = db.collection(userName);
       collection.insertMany(starredAry, function (err, result) {
         console.log('insert sucessfuly');
         callback(result);
@@ -43,15 +45,41 @@ router.get('/:userName/starred', function (req, res, next) {
       console.log('Connected correctly to server');
       insertStarredRepos(db, function () {
         db.close();
+        res.send({
+          code: 0,
+          data: []
+        })
       })
     });
 
-
-    res.send({
-      code: 0,
-      data: []
-    })
   })();
+
+});
+
+router.get('/:userName/localStarred', function (req, res, next) {
+  let {userName} = req.params;
+
+  if (!userName) throw new Error('用户名为空');
+
+  var findStarredRepos = function (db, callback) {
+    var collection = db.collection(userName);
+    collection.find({}).toArray(function (err, docs) {
+      callback(docs);
+    })
+  }
+
+  MongoClient.connect(Config.mongo.url, function (err, db) {
+    assert.equal(null, err);
+    console.log('Connected correctly to server');
+    findStarredRepos(db, function (ret) {
+      db.close();
+      res.send({
+        code: 0,
+        data: ret
+      })
+    })
+  });
+
 
 });
 
