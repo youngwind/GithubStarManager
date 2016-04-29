@@ -26,8 +26,8 @@ const Index = React.createClass({
   },
 
   componentDidMount: function () {
-    let {params:{userName}, repoActions:{fetchStarredRepos}} = this.props;
-    fetchStarredRepos(userName);
+    let {params:{userName}, repoActions:{fetchLocalStarredRepos}} = this.props;
+    fetchLocalStarredRepos(userName);
   },
 
   mapStarred: function () {

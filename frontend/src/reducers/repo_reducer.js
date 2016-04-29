@@ -14,17 +14,28 @@ function repo(state = {isFetching: false}, action) {
         isFetching: true
       };
     case ActionTypes.RECEIVE_STARRED:
-      let starred = action.starred;
       return {
         ...state,
-        isFetching: false,
-        starred
+        isFetching: false
       };
     case ActionTypes.FETCH_STARRED_FAIL:
       return {
         ...state,
         isFetching: false,
         fetchFail: true
+      };
+    case ActionTypes.REQUEST_LOCAL_STARRED:
+      return {
+        ...state,
+        isFetching: true
+      };
+    case ActionTypes.RECEIVE_LOCAL_STARRED:
+      return {
+        ...state,
+        isFetching: false,
+        starred: {
+          ...action.starred
+        }
       };
     default :
       return state;
