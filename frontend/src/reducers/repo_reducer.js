@@ -33,9 +33,7 @@ function repo(state = {isFetching: false}, action) {
       return {
         ...state,
         isFetching: false,
-        starred: {
-          ...action.starred
-        }
+        starred: action.starred
       };
     default :
       return state;

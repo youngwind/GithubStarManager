@@ -8,6 +8,9 @@ import {connect} from 'react-redux';
 import {mapStateToProps, mapDispatchToProps} from '../mixin/bind';
 import UserInfo from '../components/user_info'; // eslint-disable-line
 import SearchRepo from '../components/search_repo';  // eslint-disable-line
+import ClassifyNav from '../components/classify_nav'; // eslint-disable-line
+import RepoList from '../components/repo_list'; // eslint-disable-line
+
 import '../mixin/basic.scss';
 
 const Index = React.createClass({
@@ -20,7 +23,8 @@ const Index = React.createClass({
           <UserInfo {...this.props}/>
           <SearchRepo />
         </div>
-        {this.mapStarred()}
+        <ClassifyNav {...this.props}/>
+        <RepoList {...this.props}/>
       </div>
     );
   },
@@ -28,21 +32,9 @@ const Index = React.createClass({
   componentDidMount: function () {
     let {params:{userName}, repoActions:{fetchLocalStarredRepos}} = this.props;
     fetchLocalStarredRepos(userName);
-  },
-
-  mapStarred: function () {
-    let {repo:{starred}} = this.props;
-
-    if (!starred) return null;
-
-    return starred.map((repo, key)=> {
-      return (
-        <p key={key}>
-          {repo.name}
-        </p>
-      );
-    });
   }
+
+
 
 
 });
