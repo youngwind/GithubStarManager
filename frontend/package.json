@@ -3,7 +3,7 @@
   "version": "0.1.0",
   "scripts": {
     "start": "node index.js",
-    "watch": "browser-sync start --proxy='danci.smartstudy.com:2222' --files='public/**/*.*'",
+    "watch": "browser-sync start --proxy='localhost:2244' --files='./public/**/*.*'",
     "analyze": "webpack --profile --json > stats.json"
   },
   "devDependencies": {

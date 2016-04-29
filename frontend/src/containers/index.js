@@ -6,6 +6,9 @@
 import React from 'react';
 import {connect} from 'react-redux';
 import {mapStateToProps, mapDispatchToProps} from '../mixin/bind';
+import UserInfo from '../components/user_info'; // eslint-disable-line
+import SearchRepo from '../components/search_repo';  // eslint-disable-line
+import '../mixin/basic.scss';
 
 const Index = React.createClass({
 
@@ -13,21 +16,24 @@ const Index = React.createClass({
 
     return (
       <div>
+        <div className='clear-fix'>
+          <UserInfo {...this.props}/>
+          <SearchRepo />
+        </div>
         {this.mapStarred()}
       </div>
-    )
+    );
   },
 
   componentDidMount: function () {
-    console.log(window.location.href);
+    let {params:{userName}, repoActions:{fetchStarredRepos}} = this.props;
+    fetchStarredRepos(userName);
   },
 
   mapStarred: function () {
     let {repo:{starred}} = this.props;
 
-    console.log(starred);
-
-    // if (!starred) return null;
+    if (!starred) return null;
 
     return starred.map((repo, key)=> {
       return (

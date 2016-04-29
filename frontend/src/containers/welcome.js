@@ -4,7 +4,6 @@
  **********************************************/
 
 import React from 'react';
-import {Link} from 'react-router';
 import {connect} from 'react-redux';
 import {mapStateToProps, mapDispatchToProps} from '../mixin/bind';
 
@@ -23,21 +22,19 @@ var Welcome = React.createClass({
   },
 
   getStarred: function (e) {
-    let {repoActions:{fetchStarredRepos}} = this.props;
+    let {repoActions:{fetchStarredRepos}, history} = this.props;
     if (e.which === 13) {
       let userName = e.target.value.trim();
       // press enter
       (async() => {
-        let {starred} = await fetchStarredRepos(userName);
-        this.props.history.push(`/${userName}`);
-      })()
-
+        await fetchStarredRepos(userName);
+        history.push(`/${userName}`);
+      })();
     }
   },
 
   componentDidMount: function () {
     this.refs.inputUserName.focus();
-    console.log(window.location.href);  // eslint-disable-line
   }
 });
 

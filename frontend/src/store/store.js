@@ -6,11 +6,11 @@
 import {createStore, compose, applyMiddleware} from 'redux';
 import rootReducer from '../reducers/root_reducer.js';
 import thunkMiddleware from 'redux-thunk';
-import DevTools from '../components/DevTools';
+//import DevTools from '../components/DevTools';  // eslint-disable-line
 
 var createStoreWithMiddleware = compose(
   applyMiddleware(thunkMiddleware),
-  DevTools.instrument(),
+  // DevTools.instrument(),
   window.devToolsExtension ? window.devToolsExtension() : f => f,
 )(createStore);
 

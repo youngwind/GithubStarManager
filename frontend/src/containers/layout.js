@@ -6,14 +6,13 @@
 import React from 'react';
 import {connect} from 'react-redux';
 import {mapStateToProps, mapDispatchToProps} from '../mixin/bind';
-import DevTools from '../components/DevTools'; // eslint-disable-line
+//import DevTools from '../components/DevTools'; // eslint-disable-line
 
 var Layout = React.createClass({
 
   render: function () {
     return (
       <div>
-        <DevTools />
         {this.props.children}
       </div>
     );
