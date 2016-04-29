@@ -1,0 +1,6 @@
+.idea/
+/node_modules
+*.log
+/frontend/node_modules
+/backend/node_modules
+/frontend/public

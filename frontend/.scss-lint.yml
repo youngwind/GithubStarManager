@@ -1,0 +1,5 @@
+# 此处写scss-lint的配置，会覆盖默认的配置
+
+linters:
+  PropertySortOrder:
+    order: concentric
