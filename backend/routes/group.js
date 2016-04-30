@@ -38,7 +38,7 @@ router.get('/:userName/all', function (req, res, next) {
       code: 0,
       data: retRepoGroup
     })
-    
+
   })();
 
 });
@@ -113,6 +113,24 @@ router.post('/:userName/remove', function (req, res, next) {
     })
 
   })()
+
+});
+
+// 用户将某个仓库归为某个分组
+router.post('/:userName/repo/:repoId/group/:groupId', function (req, res, next) {
+  let {userName, groupId, repoId} = req.params;
+
+  (async()=> {
+    let ret = await repoGroup.findOneAndUpdate({
+      userName,
+      repoId: parseInt(repoId)
+    }, {groupId}, {upsert: true, new: true});
+    
+    res.send({
+      code: 0,
+      data: ret
+    })
+  })();
 
 });
 

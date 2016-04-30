@@ -23,7 +23,7 @@ const SetGroup = React.createClass({
 
     if (!group.length) {
       return (
-        <select>
+        <select onChange={this.setRepoGroup}>
           <option disabled>无分组</option>
         </select>
       );
@@ -43,14 +43,17 @@ const SetGroup = React.createClass({
     });
 
     return (
-      <select defaultValue={repoGroupId ? repoGroupId : 'null'}>
+      <select defaultValue={repoGroupId ? repoGroupId : 'null'} onChange={this.setRepoGroup}>
         <option value="null" disabled>未分组</option>
         {options}
       </select>
     );
+  },
 
-
+  setRepoGroup: function () {
+    console.log('change');
   }
+
 });
 
 module.exports = SetGroup;
