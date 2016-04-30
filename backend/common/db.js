@@ -37,7 +37,6 @@ let readme = mongoose.model('readme', readmeSchema, 'readme');
 
 // 仓库分组映射表
 let repoGroupSchema = mongoose.Schema({
-  userName: String,  // 用户名
   repId: Number,      // 仓库id
   groupId: String      // 分组id
 });
