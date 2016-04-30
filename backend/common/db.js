@@ -1,10 +1,24 @@
-var MongoClient = require('mongodb').MongoClient;
-var assert = require('assert');
-var Config = require('./config');
+var mongoose = require('mongoose');
+import Config from './config';
 
-MongoClient.connect(Config.mongo.url, function (err, db) {
-  assert.equal(null, err);
-  console.log('Connected correctly to server');
+
+mongoose.connect(Config.mongo.url);
+
+let db = mongoose.connection;
+
+db.on('error', function () {
+  console.log('connecting error')
 });
 
-module.exports = MongoClient;
+db.once('open', function () {
+  // we're connected
+});
+
+let repoSchema = mongoose.Schema({
+  name: String,
+  html_url: String
+});
+
+module.exports = {
+  repoSchema
+};

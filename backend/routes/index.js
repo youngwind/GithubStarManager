@@ -4,14 +4,15 @@ var fetch = require('isomorphic-fetch');
 var Config = require('../common/config');
 var MongoClient = require('mongodb').MongoClient;
 var assert = require('assert');
-
+import mongoose from 'mongoose';
+import {repoSchema} from '../common/db';
 
 /* GET home page. */
 router.get('/', function (req, res, next) {
   res.render('index', {title: 'Express'});
 });
 
-/* 获取用户star仓库 */
+/* 从github上获取用户star仓库 */
 router.get('/:userName/starred', function (req, res, next) {
   let userName = req.params.userName;
 
@@ -22,6 +23,8 @@ router.get('/:userName/starred', function (req, res, next) {
       page = 1,   // 请求分页
       data;     // 每次请求的数据
     while (true) {
+
+      // 此处可以用并发,有待优化
       data = await fetch(`${Config.githubApi}/users/${userName}/starred?pageSize=100&page=${page}`)
         .then(ret => ret.json());
 
@@ -31,27 +34,22 @@ router.get('/:userName/starred', function (req, res, next) {
       page++;
     }
 
-
-    var insertStarredRepos = function (db, callback) {
-      var collection = db.collection(userName);
-      collection.insertMany(starredAry, function (err, result) {
-        console.log('insert sucessfuly');
-        callback(result);
-      })
-    };
-
-    MongoClient.connect(Config.mongo.url, function (err, db) {
-      assert.equal(null, err);
-      console.log('Connected correctly to server');
-      insertStarredRepos(db, function () {
-        db.close();
+    // 每个用户都会有独立的collection,命名规则为userName-repo
+    let repo = mongoose.model(`${userName}_repo`, repoSchema, `${userName}_repo`);
+    
+    repo.insertMany(starredAry)
+      .then(() => {
         res.send({
           code: 0,
-          data: []
+          data: true
         })
       })
-    });
-
+      .catch(err => {
+        res.send({
+          code: 1,
+          msg: JSON.stringify(err)
+        });
+      });
   })();
 
 });

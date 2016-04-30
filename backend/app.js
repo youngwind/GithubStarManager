@@ -29,6 +29,8 @@ app.use(express.static(path.join(__dirname, 'public')));
 
 app.use(cors());
 
+require('./common/db');
+
 app.use('/', routes);
 app.use('/repos', repos);
 
