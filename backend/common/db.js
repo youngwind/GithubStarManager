@@ -31,7 +31,26 @@ let readmeSchema = mongoose.Schema({
 
 let readme = mongoose.model('readme', readmeSchema, 'readme');
 
+// 仓库分组映射表
+let repoGroupSchema = mongoose.Schema({
+  userName: String,  // 用户名
+  repId: Number,      // 仓库id
+  groupId: String      // 分组id
+});
+
+let repoGroup = mongoose.model('repoGroup', repoGroupSchema, 'repoGroup');
+
+// 分组表
+let userGroupSchema = mongoose.Schema({
+  userName: String,   // 用户名
+  groupName: String    // 分组名
+});
+
+let userGroup = mongoose.model('user_group', userGroupSchema, 'user_group');
+
 module.exports = {
   repoSchema,
-  readme
+  readme,
+  repoGroup,
+  userGroup
 };

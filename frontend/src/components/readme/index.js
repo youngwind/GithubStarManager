@@ -15,7 +15,7 @@ const ReadMe = React.createClass({
 
     let {params:{owner, repo}, readme} = this.props;
 
-    if (!owner || !repo || !readme[owner][repo]) return null;
+    if (!owner || !repo || !readme[owner] || !readme[owner][repo]) return null;
 
     let {content} = readme[owner][repo];
 
