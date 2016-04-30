@@ -14,11 +14,21 @@ db.once('open', function () {
   // we're connected
 });
 
+// 用户收藏的仓库
 let repoSchema = mongoose.Schema({
   name: String,
   html_url: String
 });
 
+// 仓库的readme资料
+let readmeSchema = mongoose.Schema({
+  html_url: String,
+  content: String
+});
+
+let readme = mongoose.model('readme', readmeSchema, 'readme');
+
 module.exports = {
-  repoSchema
+  repoSchema,
+  readme
 };

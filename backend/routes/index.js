@@ -2,8 +2,6 @@ var express = require('express');
 var router = express.Router();
 var fetch = require('isomorphic-fetch');
 var Config = require('../common/config');
-var MongoClient = require('mongodb').MongoClient;
-var assert = require('assert');
 import mongoose from 'mongoose';
 import {repoSchema} from '../common/db';
 
@@ -48,6 +46,7 @@ router.get('/:userName/starred', function (req, res, next) {
 
 });
 
+/* 从本地数据库中读取用户收藏的仓库 */
 router.get('/:userName/localStarred', function (req, res, next) {
   let {userName} = req.params;
 
