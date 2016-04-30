@@ -16,12 +16,16 @@ db.once('open', function () {
 
 // 用户收藏的仓库
 let repoSchema = mongoose.Schema({
-  name: String,
-  html_url: String,
+  userName: String,   // 用户名
+  id: Number,     // 仓库id
+  name: String,   // 仓库名
+  html_url: String,   // 仓库url地址
   owner: {
-    login: String
+    login: String    // 仓库作者名
   }
 });
+
+let repo = mongoose.model('repo', repoSchema, 'repo');
 
 // 仓库的readme资料
 let readmeSchema = mongoose.Schema({
@@ -49,7 +53,7 @@ let userGroupSchema = mongoose.Schema({
 let userGroup = mongoose.model('user_group', userGroupSchema, 'user_group');
 
 module.exports = {
-  repoSchema,
+  repo,
   readme,
   repoGroup,
   userGroup

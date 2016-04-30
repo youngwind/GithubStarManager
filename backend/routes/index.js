@@ -2,8 +2,7 @@ var express = require('express');
 var router = express.Router();
 var fetch = require('isomorphic-fetch');
 var Config = require('../common/config');
-import mongoose from 'mongoose';
-import {repoSchema} from '../common/db';
+import {repo} from '../common/db';
 
 /* GET home page. */
 router.get('/', function (req, res, next) {
@@ -32,9 +31,16 @@ router.get('/:userName/starred', function (req, res, next) {
       page++;
     }
 
-    // 每个用户都会有独立的collection,命名规则为userName-repo
-    let repo = mongoose.model(`${userName}_repo`, repoSchema, `${userName}_repo`);
+    let ret = await repo.remove({
+      userName
+    });
+    
+    starredAry = starredAry.map((starred, key) => {
+      starred.userName = userName;
+      return starred;
+    });
 
+    console.log(starredAry);
     await repo.insertMany(starredAry);
 
     res.send({
@@ -57,8 +63,8 @@ router.get('/:userName/localStarred', function (req, res, next) {
     let result = await repo.find();
 
     res.send({
-      code:0,
-      data:result
+      code: 0,
+      data: result
     })
   })();
 
