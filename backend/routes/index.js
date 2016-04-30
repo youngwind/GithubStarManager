@@ -36,20 +36,14 @@ router.get('/:userName/starred', function (req, res, next) {
 
     // 每个用户都会有独立的collection,命名规则为userName-repo
     let repo = mongoose.model(`${userName}_repo`, repoSchema, `${userName}_repo`);
-    
-    repo.insertMany(starredAry)
-      .then(() => {
-        res.send({
-          code: 0,
-          data: true
-        })
-      })
-      .catch(err => {
-        res.send({
-          code: 1,
-          msg: JSON.stringify(err)
-        });
-      });
+
+    await repo.insertMany(starredAry);
+
+    res.send({
+      code: 0,
+      data: true
+    });
+
   })();
 
 });
@@ -59,25 +53,15 @@ router.get('/:userName/localStarred', function (req, res, next) {
 
   if (!userName) throw new Error('用户名为空');
 
-  var findStarredRepos = function (db, callback) {
-    var collection = db.collection(userName);
-    collection.find({}).toArray(function (err, docs) {
-      callback(docs);
-    })
-  }
+  (async()=> {
+    let repo = mongoose.model(`${userName}_repo`, repoSchema, `${userName}_repo`);
+    let result = await repo.find();
 
-  MongoClient.connect(Config.mongo.url, function (err, db) {
-    assert.equal(null, err);
-    console.log('Connected correctly to server');
-    findStarredRepos(db, function (ret) {
-      db.close();
-      res.send({
-        code: 0,
-        data: ret
-      })
+    res.send({
+      code:0,
+      data:result
     })
-  });
-
+  })();
 
 });
 
