@@ -8,12 +8,14 @@ import {bindActionCreators} from 'redux';
 import actions from '../action/root_action';
 
 const mapStateToProps = (state) => ({
-  repo: state.repo
+  repo: state.repo,
+  readme: state.readme
   // more
 });
 
 const mapDispatchToProps = (dispatch) => ({
-  repoActions: bindActionCreators(actions.repo, dispatch)
+  repoActions: bindActionCreators(actions.repo, dispatch),
+  readmeActions: bindActionCreators(actions.readme, dispatch)
   //more
 });
 

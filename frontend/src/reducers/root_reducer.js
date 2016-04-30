@@ -6,9 +6,11 @@
 
 import {combineReducers} from 'redux';
 import repo from './repo_reducer';
+import readme from './readme_reducer';
 
 var rootReducer = combineReducers({
-  repo
+  repo,
+  readme
   // more
 });
 

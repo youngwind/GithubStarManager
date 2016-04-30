@@ -17,7 +17,10 @@ db.once('open', function () {
 // 用户收藏的仓库
 let repoSchema = mongoose.Schema({
   name: String,
-  html_url: String
+  html_url: String,
+  owner: {
+    login: String
+  }
 });
 
 // 仓库的readme资料

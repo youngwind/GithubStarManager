@@ -14,12 +14,12 @@ router.get('/:owner/:repo', function (req, res, next) {
 
   (async()=> {
 
-    let readmeResult = await readme.find({
+    let readmeResult = await readme.findOne({
       html_url: `https://github.com/${owner}/${repo}/blob/master/README.md`
     });
-
+    
     // 如果数据库中有此readme,则直接返回,不必请求
-    if (readmeResult.length) {
+    if (readmeResult) {
       res.send({
         code: 0,
         data: readmeResult

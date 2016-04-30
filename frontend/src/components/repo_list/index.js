@@ -25,12 +25,19 @@ const RepoList = React.createClass({
     if (!starred) return null;
 
     return starred.map((repo, key)=> {
+      let {owner:{login}, name} = repo;
       return (
-        <li key={key}>
-          <a href={repo.html_url} target="_blank"> {repo.name}</a>
+        <li key={key} onClick={this.showReadme.bind(this,login,name)}>
+          {repo.name}
         </li>
       );
     });
+  },
+
+  // 显示readme
+  showReadme: function (owner, name) {
+    let {readmeActions:{fetchReadme}} = this.props;
+    fetchReadme(owner, name);
   }
 
 });

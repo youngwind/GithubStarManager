@@ -5,9 +5,11 @@
  **********************************************/
 
 import * as repo from './repo_action';
+import * as readme from './readme_action';
 
 module.exports = {
-  repo
+  repo,
+  readme
   //more
 };
 
