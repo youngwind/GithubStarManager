@@ -21,6 +21,15 @@ module.exports = keyMirror({
   // 接收仓库的readme文档
   RECEIVE_README: null,
   // 请求仓库的readme文档失败
-  FETCH_README_FAIL: null
+  FETCH_README_FAIL: null,
+
+  // 请求分组信息
+  REQUEST_GROUP_INFO: null,
+  // 接收分组信息
+  RECEIVE_GROUP_INFO: null,
+  // 请求分组信息失败
+  FETCH_GROUP_INFO_FAIL: null,
+  // 设置分组
+  SET_REPO_GROUP: null
 
 });

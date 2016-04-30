@@ -6,10 +6,12 @@
 
 import * as repo from './repo_action';
 import * as readme from './readme_action';
+import * as group from './group_action';
 
 module.exports = {
   repo,
-  readme
+  readme,
+  group
   //more
 };
 

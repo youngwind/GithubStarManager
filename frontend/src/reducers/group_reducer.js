@@ -1,29 +1,24 @@
 /**********************************************
  * Created by liangshaofeng on 2016年4月30日
- * 处理readme相关
+ * 处理分组相关
  **********************************************/
 
 var ActionTypes = require('../constants/action_types');
 
-function readme(state = {isFetching: false}, action) {
+function group(state = {isFetching: false}, action) {
   switch (action.type) {
-    case ActionTypes.REQUEST_README:
+    case ActionTypes.REQUEST_GROUP_INFO:
       return {
         ...state,
         isFetching: true
       };
-    case ActionTypes.RECEIVE_README:
-      let {owner, repo, content} = action;
-      let someoneRepo = state[`${owner}`];
+    case ActionTypes.RECEIVE_GROUP_INFO:
       return {
         ...state,
         isFetching: false,
-        [`${owner}`]: {
-          ...someoneRepo,
-          [`${repo}`]: content
-        }
+        data: action.group
       };
-    case ActionTypes.FETCH_README_FAIL:
+    case ActionTypes.FETCH_GROUP_INFO_FAIL:
       return {
         ...state,
         isFetching: false,
@@ -34,5 +29,5 @@ function readme(state = {isFetching: false}, action) {
   }
 }
 
-module.exports = readme;
+module.exports = group;
 

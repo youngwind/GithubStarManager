@@ -27,7 +27,7 @@ exports.receivedStarredRepos = function (userName, res) {
 exports.fetchStarredRepos = function (userName) {
   return function (dispatch) {
     dispatch(exports.requestStarredRepos(userName));
-    return fetch(`${Config.api}/${userName}/starred`)
+    return fetch(`${Config.api}/repo/${userName}/starred`)
       .then(Utils.checkStatus)
       .then(res => res.json())
       .then(Utils.checkCode)
@@ -65,7 +65,7 @@ exports.receivedLocalStarredRepos = function (userName, res) {
 exports.fetchLocalStarredRepos = function (userName) {
   return function (dispatch) {
     dispatch(exports.requestLocalStarredRepos(userName));
-    return fetch(`${Config.api}/${userName}/localStarred`)
+    return fetch(`${Config.api}/repo/${userName}/localStarred`)
       .then(Utils.checkStatus)
       .then(res => res.json())
       .then(Utils.checkCode)

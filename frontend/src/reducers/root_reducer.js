@@ -7,10 +7,12 @@
 import {combineReducers} from 'redux';
 import repo from './repo_reducer';
 import readme from './readme_reducer';
+import group from './group_reducer';
 
 var rootReducer = combineReducers({
   repo,
-  readme
+  readme,
+  group
   // more
 });
 

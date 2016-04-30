@@ -54,8 +54,9 @@ router.get('/:userName/localStarred', function (req, res, next) {
   if (!userName) throw new Error('用户名为空');
 
   (async()=> {
-    let repo = mongoose.model(`${userName}_repo`, repoSchema, `${userName}_repo`);
-    let result = await repo.find();
+    let result = await repo.find({
+      userName
+    });
 
     res.send({
       code: 0,

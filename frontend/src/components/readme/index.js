@@ -11,7 +11,6 @@ const ReadMe = React.createClass({
 
   render: function () {
 
-    // console.log(this.props)
 
     let {params:{owner, repo}, readme} = this.props;
 
