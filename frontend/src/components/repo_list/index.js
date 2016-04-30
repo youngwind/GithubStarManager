@@ -35,9 +35,13 @@ const RepoList = React.createClass({
   },
 
   // 显示readme
-  showReadme: function (owner, name) {
-    let {readmeActions:{fetchReadme}} = this.props;
-    fetchReadme(owner, name);
+  showReadme: function (owner, repo) {
+    let {readmeActions:{fetchReadme}, history, params:{userName}} = this.props;
+    (async()=> {
+      await fetchReadme(owner, repo);
+      history.push(`/${userName}/${owner}/${repo}`);
+    })();
+
   }
 
 });

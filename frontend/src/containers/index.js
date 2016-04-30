@@ -10,6 +10,7 @@ import UserInfo from '../components/user_info'; // eslint-disable-line
 import SearchRepo from '../components/search_repo';  // eslint-disable-line
 import ClassifyNav from '../components/classify_nav'; // eslint-disable-line
 import RepoList from '../components/repo_list'; // eslint-disable-line
+import ReadMe from '../components/readme'; // eslint-disable-line
 
 import '../mixin/basic.scss';
 
@@ -25,6 +26,7 @@ const Index = React.createClass({
         </div>
         <ClassifyNav {...this.props}/>
         <RepoList {...this.props}/>
+        <ReadMe {...this.props} />
       </div>
     );
   },
