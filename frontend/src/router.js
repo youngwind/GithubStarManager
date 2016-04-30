@@ -19,7 +19,7 @@ module.exports = (function (history) {
       <Route path='/' component={Layout}>
         <IndexRoute component={Welcome}/>
         <Route path='/:userName' component={Index}/>
-        <Route path='/:userName/:owner/:repo' component={Index}/>
+        <Route path='/:userName/:repoId' component={Index}/>
         <Redirect from='*' to='/'/>
       </Route>
     </Router>

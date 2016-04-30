@@ -14,7 +14,7 @@ var config = require('./common/config.js');
 
 var routes = require('./routes/index');
 var readme = require('./routes/readme');
-var userGroup = require('./routes/user_group');
+var group = require('./routes/group');
 var repo = require('./routes/repo');
 
 
@@ -35,7 +35,7 @@ require('./common/db');
 
 app.use('/', routes);
 app.use('/readme', readme);
-app.use('/userGroup', userGroup);
+app.use('/group', group);
 app.use('/repo', repo);
 
 // catch 404 and forward to error handler

@@ -25,9 +25,9 @@ const RepoList = React.createClass({
     if (!starred) return null;
 
     return starred.map((repo, key)=> {
-      let {owner:{login}, name} = repo;
+      let {owner:{login}, name, id} = repo;
       return (
-        <li key={key} onClick={this.showReadme.bind(this,login,name)}>
+        <li key={key} onClick={this.showReadme.bind(this,login,name,id)}>
           {repo.name}
         </li>
       );
@@ -35,11 +35,11 @@ const RepoList = React.createClass({
   },
 
   // 显示readme
-  showReadme: function (owner, repo) {
+  showReadme: function (owner, repo, repoId) {
     let {readmeActions:{fetchReadme}, history, params:{userName}} = this.props;
     (async()=> {
-      await fetchReadme(owner, repo);
-      history.push(`/${userName}/${owner}/${repo}`);
+      await fetchReadme(owner, repo, repoId);
+      history.push(`/${userName}/${repoId}`);
     })();
 
   }

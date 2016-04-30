@@ -8,6 +8,7 @@ import {readme} from '../common/db';
 /* 获取仓库对应的readme文档 */
 router.get('/:owner/:repo', function (req, res, next) {
   let {owner, repo} = req.params;
+  let {repoId} = req.query;
 
   if (!owner) throw new Error('仓库所有者为空');
   if (!repo) throw new Error('仓库为空');
@@ -15,9 +16,9 @@ router.get('/:owner/:repo', function (req, res, next) {
   (async()=> {
 
     let readmeResult = await readme.findOne({
-      html_url: `https://github.com/${owner}/${repo}/blob/master/README.md`
+      repoId
     });
-    
+
     // 如果数据库中有此readme,则直接返回,不必请求
     if (readmeResult) {
       res.send({
@@ -29,7 +30,12 @@ router.get('/:owner/:repo', function (req, res, next) {
 
     readmeResult = await fetch(`${Config.realGithubApi}/repos/${owner}/${repo}/readme`)
       .then(ret => ret.json());
-    let result = await new readme(readmeResult).save();
+
+
+    let result = await new readme({
+      ...readmeResult,
+      repoId
+    }).save();
 
     res.send({
       code: 0,

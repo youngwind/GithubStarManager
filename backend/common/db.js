@@ -29,6 +29,7 @@ let repo = mongoose.model('repo', repoSchema, 'repo');
 
 // 仓库的readme资料
 let readmeSchema = mongoose.Schema({
+  repoId: Number,       // 仓库id
   html_url: String,
   content: String
 });

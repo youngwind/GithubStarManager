@@ -12,11 +12,11 @@ const ReadMe = React.createClass({
   render: function () {
 
 
-    let {params:{owner, repo}, readme} = this.props;
+    let {params:{repoId}, readme} = this.props;
 
-    if (!owner || !repo || !readme[owner] || !readme[owner][repo]) return null;
+    if (!repoId || !readme[repoId]) return null;
 
-    let {content} = readme[owner][repo];
+    let {content} = readme[repoId];
 
     return (
       <div className='readme-container'>

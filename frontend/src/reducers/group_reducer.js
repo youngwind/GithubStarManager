@@ -16,7 +16,7 @@ function group(state = {isFetching: false}, action) {
       return {
         ...state,
         isFetching: false,
-        data: action.group
+        group: action.group
       };
     case ActionTypes.FETCH_GROUP_INFO_FAIL:
       return {

@@ -13,15 +13,11 @@ function readme(state = {isFetching: false}, action) {
         isFetching: true
       };
     case ActionTypes.RECEIVE_README:
-      let {owner, repo, content} = action;
-      let someoneRepo = state[`${owner}`];
+      let {repoId, content} = action;
       return {
         ...state,
         isFetching: false,
-        [`${owner}`]: {
-          ...someoneRepo,
-          [`${repo}`]: content
-        }
+        [repoId]: content
       };
     case ActionTypes.FETCH_README_FAIL:
       return {

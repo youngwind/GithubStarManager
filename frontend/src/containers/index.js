@@ -36,13 +36,15 @@ const Index = React.createClass({
   },
 
   componentDidMount: function () {
-    let {params:{userName, owner, repo}, repoActions:{fetchLocalStarredRepos}} = this.props;
-    let {readmeActions:{fetchReadme}} = this.props;
+    let {params:{userName, repoId}, repoActions:{fetchLocalStarredRepos}} = this.props;
+    let {readmeActions:{fetchReadme}, groupActions:{fetchGroupInfo}} = this.props;
     fetchLocalStarredRepos(userName);
+    fetchGroupInfo(userName);
 
-    if (owner && repo) {
-      fetchReadme(owner, repo);
+    if (repoId) {
+      fetchReadme(null, null, repoId);
     }
+    
   }
 
 
