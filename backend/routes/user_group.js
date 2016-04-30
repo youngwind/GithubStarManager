@@ -2,11 +2,22 @@ var express = require('express');
 var router = express.Router();
 import {userGroup} from '../common/db';
 
-router.get('/group/all', function (req, res, next) {
-  res.send({
-    code: 0,
-    data: []
-  })
+// 用户获取所有分组
+router.get('/:userName/all', function (req, res, next) {
+  let {userName} = req.params;
+
+  (async()=> {
+    let ret = await userGroup.find({
+      userName
+    });
+
+    res.send({
+      code: 0,
+      data: ret
+    })
+
+  })();
+
 });
 
 // 用户添加分组
