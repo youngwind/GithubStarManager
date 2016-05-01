@@ -8,10 +8,10 @@ import {connect} from 'react-redux';
 import {mapStateToProps, mapDispatchToProps} from '../mixin/bind';
 import UserInfo from '../components/user_info'; // eslint-disable-line
 import SearchRepo from '../components/search_repo';  // eslint-disable-line
-import ClassifyNav from '../components/classify_nav'; // eslint-disable-line
 import RepoList from '../components/repo_list'; // eslint-disable-line
 import ReadMe from '../components/readme'; // eslint-disable-line
 import SetGroup from '../components/set_group'; // eslint-disable-line
+import GroupNav from '../components/group_nav'; // eslint-disable-line
 
 import '../mixin/basic.scss';
 
@@ -25,7 +25,9 @@ const Index = React.createClass({
           <UserInfo {...this.props}/>
           <SearchRepo />
         </div>
-        <ClassifyNav {...this.props}/>
+        <div className='classify-nav-container'>
+          <GroupNav {...this.props}/>
+        </div>
         <RepoList {...this.props}/>
         <div className='repo-detail-container'>
           <SetGroup {...this.props}/>
@@ -44,7 +46,7 @@ const Index = React.createClass({
     if (repoId) {
       fetchReadme(null, null, repoId);
     }
-    
+
   }
 
 
