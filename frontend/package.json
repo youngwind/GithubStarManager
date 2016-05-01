@@ -15,6 +15,7 @@
     "webpack": "^1.12.4"
   },
   "dependencies": {
+    "antd": "^0.12.16",
     "array-to-hash-object": "^0.1.5",
     "autoprefixer": "^6.1.2",
     "babel-core": "^6.2.1",
@@ -28,7 +29,7 @@
     "babel-register": "^6.4.3",
     "babel-runtime": "^5.8.25",
     "body-parser": "^1.14.2",
-    "classnames": "^2.2.3",
+    "classnames": "^2.2.4",
     "css-loader": "^0.23.0",
     "ejs": "^2.4.1",
     "eslint": "^1.10.3",
