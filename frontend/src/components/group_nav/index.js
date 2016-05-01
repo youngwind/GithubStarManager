@@ -7,11 +7,21 @@ import React from 'react';
 
 const GroupNav = React.createClass({
 
+  getInitialState: function () {
+    return {
+      addActive: false
+    }
+  },
+
   render: function () {
     return (
       <div>
         <h3>分组</h3>
         {this.returnGroups()}
+        {this.state.addActive ?
+          <input type="text" placeholder="input something" onKeyUp={this.handleAddRepoGroup}/> :
+          <button onClick={this.showAddInput}>添加分类</button>
+        }
       </div>
     );
   },
@@ -45,6 +55,24 @@ const GroupNav = React.createClass({
         {groups}
       </ul>
     );
+  },
+
+  showAddInput: function () {
+    this.setState({
+      addActive: true
+    })
+  },
+
+  handleAddRepoGroup: function (e) {
+    let {groupActions:{addRepoGroup}, params:{userName}} = this.props;
+    let groupName = e.target.value.trim();
+    if (e.which === 13) {
+      if (!groupName) return;
+      addRepoGroup(userName, groupName);
+      this.setState({
+        addActive: false
+      })
+    }
   }
 
 });

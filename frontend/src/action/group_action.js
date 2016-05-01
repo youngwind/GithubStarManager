@@ -58,3 +58,16 @@ exports.setRepoGroup = function (userName, repoId, groupId) {
       .then(Utils.checkCode);
   };
 };
+
+// 添加分组
+exports.addRepoGroup = function (userName, groupName) {
+  return function (dispatch) {
+    return fetch(`${Config.api}/group/${userName}/save/${groupName}`, {
+      method: 'post'
+    },)
+      .then(Utils.checkStatus)
+      .then(res => res.json())
+      .then(Utils.checkCode)
+      .then(() => dispatch(exports.fetchGroupInfo(userName)))
+  }
+};

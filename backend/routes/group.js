@@ -27,7 +27,7 @@ router.get('/:userName/all', function (req, res, next) {
       let ret = await repoGroup.find({
         groupId: retGroup[index]._id
       });
-      
+
       ret = ret.map((value, key)=> {
         return value.repoId
       });
@@ -49,9 +49,8 @@ router.get('/:userName/all', function (req, res, next) {
 });
 
 // 用户添加分组
-router.post('/:userName/save', function (req, res, next) {
-  let {userName} = req.params;
-  let {groupName} = req.body;
+router.post('/:userName/save/:groupName', function (req, res, next) {
+  let {userName, groupName} = req.params;
 
   if (!groupName) throw new Error('分组名称为空');
 
