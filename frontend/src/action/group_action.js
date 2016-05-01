@@ -43,3 +43,18 @@ exports.fetchGroupInfoFail = function () {
     type: ActionTypes.FETCH_GROUP_INFO_FAIL
   };
 };
+
+/**
+ * 设置仓库分组
+ * @returns {{type: null}}
+ */
+exports.setRepoGroup = function (userName, repoId, groupId) {
+  return function () {
+    return fetch(`${Config.api}/group/${userName}/repo/${repoId}/group/${groupId}`, {
+      method: 'post'
+    })
+      .then(Utils.checkStatus)
+      .then(res => res.json())
+      .then(Utils.checkCode);
+  };
+};

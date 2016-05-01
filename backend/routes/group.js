@@ -27,6 +27,11 @@ router.get('/:userName/all', function (req, res, next) {
       let ret = await repoGroup.find({
         groupId: retGroup[index]._id
       });
+      
+      ret = ret.map((value, key)=> {
+        return value.repoId
+      });
+
       retRepoGroup.push({
         id: retGroup[index]._id,
         name: retGroup[index].groupName,
@@ -125,7 +130,7 @@ router.post('/:userName/repo/:repoId/group/:groupId', function (req, res, next) 
       userName,
       repoId: parseInt(repoId)
     }, {groupId}, {upsert: true, new: true});
-    
+
     res.send({
       code: 0,
       data: ret

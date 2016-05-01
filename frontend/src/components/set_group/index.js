@@ -34,7 +34,7 @@ const SetGroup = React.createClass({
 
       // 获取当前仓库所属分组id
       if (!repoGroupId) {
-        repoGroupId = group.repoIds.includes(repoId) ? group.id : null;
+        repoGroupId = group.repoIds.includes(repoId * 1) ? group.id : null;
       }
 
       return (
@@ -43,15 +43,21 @@ const SetGroup = React.createClass({
     });
 
     return (
-      <select defaultValue={repoGroupId ? repoGroupId : 'null'} onChange={this.setRepoGroup}>
+      <select value={repoGroupId ? repoGroupId : 'null'} onChange={this.setRepoGroup}>
         <option value="null" disabled>未分组</option>
         {options}
       </select>
     );
   },
 
-  setRepoGroup: function () {
-    console.log('change');
+  setRepoGroup: function (e) {
+    let {groupActions:{setRepoGroup, fetchGroupInfo}} = this.props;
+    let {params:{userName, repoId}} = this.props;
+    let groupId = e.target.value;
+    (async()=> {
+      await setRepoGroup(userName, repoId, groupId);
+      fetchGroupInfo(userName);
+    })();
   }
 
 });
