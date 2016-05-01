@@ -30,6 +30,16 @@ module.exports = keyMirror({
   // 请求分组信息失败
   FETCH_GROUP_INFO_FAIL: null,
   // 设置分组
-  SET_REPO_GROUP: null
+  SET_REPO_GROUP: null,
+
+  // 根据搜索条件的集合搜索
+  SEARCH: null,
+
+  // 设置搜索条件:分组
+  ADD_OR_REPLACE_SEARCH_GROUP: null,
+
+
+  // 根据搜索条件生成repoIds
+  GENERATE_RESULT_REPO_IDS: null
 
 });

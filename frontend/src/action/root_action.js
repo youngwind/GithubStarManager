@@ -7,11 +7,13 @@
 import * as repo from './repo_action';
 import * as readme from './readme_action';
 import * as group from './group_action';
+import * as search from './search_action';
 
 module.exports = {
   repo,
   readme,
-  group
+  group,
+  search
   //more
 };
 

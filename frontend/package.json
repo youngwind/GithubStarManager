@@ -47,6 +47,7 @@
     "json-loader": "^0.5.4",
     "keymirror": "^0.1.1",
     "lodash": "^3.10.1",
+    "lodash.difference": "^4.2.0",
     "material-design-icons": "^2.2.3",
     "merge-stream": "^1.0.0",
     "morgan": "^1.7.0",

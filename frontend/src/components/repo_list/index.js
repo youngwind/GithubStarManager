@@ -20,12 +20,15 @@ const RepoList = React.createClass({
   },
 
   mapStarred: function () {
-    let {repo:{starred}} = this.props;
+    let {repo:{starred}, search:{repoIds}} = this.props;
 
     if (!starred) return null;
 
     return starred.map((repo, key)=> {
       let {owner:{login}, name, id} = repo;
+      
+      if (repoIds && !repoIds.includes(id))return null;
+
       return (
         <li key={key} onClick={this.showReadme.bind(this,login,name,id)}>
           {repo.name}

@@ -10,14 +10,16 @@ import actions from '../action/root_action';
 const mapStateToProps = (state) => ({
   repo: state.repo,
   readme: state.readme,
-  group: state.group
+  group: state.group,
+  search: state.search
   // more
 });
 
 const mapDispatchToProps = (dispatch) => ({
   repoActions: bindActionCreators(actions.repo, dispatch),
   readmeActions: bindActionCreators(actions.readme, dispatch),
-  groupActions: bindActionCreators(actions.group, dispatch)
+  groupActions: bindActionCreators(actions.group, dispatch),
+  searchActions: bindActionCreators(actions.search, dispatch)
   //more
 });
 

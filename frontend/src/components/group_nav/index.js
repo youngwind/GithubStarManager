@@ -10,7 +10,7 @@ const GroupNav = React.createClass({
   getInitialState: function () {
     return {
       addActive: false
-    }
+    };
   },
 
   render: function () {
@@ -36,7 +36,7 @@ const GroupNav = React.createClass({
       let length = group.repoIds.length;
       groupedRepoNumber = groupedRepoNumber + length;
       return (
-        <li key={key}>
+        <li key={key} onClick={this.searchThisGroup.bind(this,group.id)}>
           <span>{group.name}</span>
           <span>({length})</span>
         </li>
@@ -48,7 +48,7 @@ const GroupNav = React.createClass({
 
     return (
       <ul>
-        <li>
+        <li onClick={this.searchThisGroup.bind(this,0)}>
           <span>未分组</span>
           <span>({ungroupedRepoNumber})</span>
         </li>
@@ -60,7 +60,7 @@ const GroupNav = React.createClass({
   showAddInput: function () {
     this.setState({
       addActive: true
-    })
+    });
   },
 
   handleAddRepoGroup: function (e) {
@@ -71,8 +71,14 @@ const GroupNav = React.createClass({
       addRepoGroup(userName, groupName);
       this.setState({
         addActive: false
-      })
+      });
     }
+  },
+
+  searchThisGroup: function (groupId) {
+    let {searchActions:{addOrReplaceSearchGroup, generateResultRepoIds}} = this.props;
+    addOrReplaceSearchGroup(groupId);
+    generateResultRepoIds();
   }
 
 });

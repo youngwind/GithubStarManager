@@ -8,11 +8,13 @@ import {combineReducers} from 'redux';
 import repo from './repo_reducer';
 import readme from './readme_reducer';
 import group from './group_reducer';
+import search from './search_reducer';
 
 var rootReducer = combineReducers({
   repo,
   readme,
-  group
+  group,
+  search
   // more
 });
 
