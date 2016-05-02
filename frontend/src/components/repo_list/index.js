@@ -5,6 +5,7 @@
 
 import React from 'react';
 import './index.scss';
+import ClassName from 'classnames';
 
 const RepoList = React.createClass({
 
@@ -20,7 +21,7 @@ const RepoList = React.createClass({
   },
 
   mapStarred: function () {
-    let {repo:{starred}, search:{repoIds}} = this.props;
+    let {repo:{starred}, search:{repoIds}, params:{repoId}} = this.props;
 
     if (!starred) return null;
 
@@ -29,8 +30,11 @@ const RepoList = React.createClass({
 
       if (repoIds && !repoIds.includes(id))return null;
 
+      let liClassName = ClassName({
+        active: repoId * 1 === id * 1
+      });
       return (
-        <li key={key} onClick={this.showReadme.bind(this,login,name,id)}>
+        <li key={key} onClick={this.showReadme.bind(this,login,name,id)} className={liClassName}>
           {repo.owner.login}/{repo.name}
         </li>
       );

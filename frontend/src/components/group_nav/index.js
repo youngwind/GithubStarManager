@@ -20,7 +20,8 @@ const GroupNav = React.createClass({
         <h3>分组:</h3>
         {this.returnGroups()}
         {this.state.addActive ?
-          <input autoFocus type="text" placeholder="group name" onKeyUp={this.handleAddRepoGroup} className='add-group-input'/> :
+          <input autoFocus type="text" placeholder="group name" onKeyUp={this.handleAddRepoGroup}
+                 className='add-group-input'/> :
           <button onClick={this.showAddInput}>添加分类</button>
         }
       </div>
@@ -28,7 +29,7 @@ const GroupNav = React.createClass({
   },
 
   returnGroups: function () {
-    let {group:{group}, repo} = this.props;
+    let {group:{group}, search:{group:selectedGroupId}, repo} = this.props;
 
     if (!group) return null;
 
@@ -36,8 +37,11 @@ const GroupNav = React.createClass({
     let groups = group.map((group, key)=> {
       let length = group.repoIds.length;
       groupedRepoNumber = groupedRepoNumber + length;
+      console.log(group);
+      console.log(selectedGroupId);
       return (
-        <li key={key} onClick={this.searchThisGroup.bind(this,group.id)}>
+        <li key={key} onClick={this.searchThisGroup.bind(this,group.id)}
+            className={selectedGroupId === group.id ? 'active':''}>
           <span>{group.name}</span>
           <span>({length})</span>
         </li>
@@ -49,7 +53,8 @@ const GroupNav = React.createClass({
 
     return (
       <ul className='group-nav-list'>
-        <li onClick={this.searchThisGroup.bind(this,0)}>
+        <li onClick={this.searchThisGroup.bind(this,0)}
+            className={selectedGroupId === 0 ?'active':''}>
           <span>未分组</span>
           <span>({ungroupedRepoNumber})</span>
         </li>
