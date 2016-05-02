@@ -4,26 +4,18 @@
  **********************************************/
 
 import React from 'react';
+import './index.scss';
 
 const SetGroup = React.createClass({
 
   render: function () {
-    return (
-      <div className='set-group-container'>
-        {this.returnOptions()}
-      </div>
-    );
-  },
-
-  returnOptions: function () {
-
     let {group:{group}, params:{repoId}} = this.props;
 
     if (!group) return null;
 
     if (!group.length) {
       return (
-        <select onChange={this.setRepoGroup}>
+        <select onChange={this.setRepoGroup} className='set-group'>
           <option disabled>无分组</option>
         </select>
       );
@@ -43,13 +35,13 @@ const SetGroup = React.createClass({
     });
 
     return (
-      <select value={repoGroupId ? repoGroupId : 'null'} onChange={this.setRepoGroup}>
+      <select value={repoGroupId ? repoGroupId : 'null'} onChange={this.setRepoGroup} className='set-group'>
         <option value="null" disabled>未分组</option>
         {options}
       </select>
     );
   },
-
+  
   setRepoGroup: function (e) {
     let {groupActions:{setRepoGroup, fetchGroupInfo}} = this.props;
     let {params:{userName, repoId}} = this.props;

@@ -65,6 +65,7 @@ input.error {
     opacity: 1;
   }
 }
+
 .index-container {
   height: 670px;
   overflow: hidden;
@@ -85,6 +86,12 @@ input.error {
 // 右侧详情
 .repo-detail-container {
   float: left;
+  padding: 10px 20px;
   width: 70%;
   height: 100%;
+
+  .repo-basic-info-container {
+    height: 30px;
+    border-bottom: 1px solid #999;
+  }
 }
