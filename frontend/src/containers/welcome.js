@@ -7,7 +7,6 @@ import React from 'react';
 import {connect} from 'react-redux';
 import {mapStateToProps, mapDispatchToProps} from '../mixin/bind';
 import classNames from 'classnames';
-import {Icon} from 'antd';  // eslint-disable-line
 
 var Welcome = React.createClass({
 
@@ -28,10 +27,12 @@ var Welcome = React.createClass({
     return (
       <div className='welcome-container'>
         <h1>Welcome to GithubStarManager</h1>
-        <h2>please input your username</h2>
         {
-          isFetching ? <Icon type="loading"/> :
-            <input type='text' onKeyUp={this.getStarred} autoFocus={true} className={inputClassName}/>
+          isFetching ? <h3>loading....please wait..</h3> :
+            <div>
+              <h2>please input your username</h2>
+              < input type='text' onKeyUp={this.getStarred} autoFocus={true} className={inputClassName}/>
+            </div>
         }
       </div>
     );

@@ -8,7 +8,6 @@ import {connect} from 'react-redux';
 import {mapStateToProps, mapDispatchToProps} from '../mixin/bind';
 //import DevTools from '../components/DevTools'; // eslint-disable-line
 import 'normalize.css';
-import 'antd/lib/index.css';
 
 var Layout = React.createClass({
 
