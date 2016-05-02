@@ -1,0 +1,21 @@
+// created by liangshaofeng on 2016年5月2日
+// 分类导航样式
+@import '../../mixin/var';
+
+.group-nav-list {
+  padding: 0;
+  list-style-type: none;
+
+  li {
+    padding: 10px;
+    width: 100%;
+    cursor: pointer;
+    &:hover {
+      background-color: #1087e2;
+    }
+  }
+}
+
+.add-group-input {
+  width: 90%;
+}

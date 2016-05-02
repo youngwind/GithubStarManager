@@ -1,5 +1,9 @@
 @import './var';
 
+* {
+  box-sizing: border-box;
+}
+
 .clear-fix {
   zoom: 1;
 
@@ -61,15 +65,26 @@ input.error {
     opacity: 1;
   }
 }
+.index-container {
+  height: 670px;
+  overflow: hidden;
+}
+
+.top-area-container {
+  background-color: #d4d2d4;
+}
 
 .classify-nav-container {
   float: left;
   width: 10%;
-  height: 800px;
+  height: 100%;
+  background-color: #5a6060;
+  color: #d5dde4;
 }
 
 // 右侧详情
 .repo-detail-container {
   float: left;
-  width: 60%;
+  width: 70%;
+  height: 100%;
 }

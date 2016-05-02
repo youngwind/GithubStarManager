@@ -26,12 +26,12 @@ const RepoList = React.createClass({
 
     return starred.map((repo, key)=> {
       let {owner:{login}, name, id} = repo;
-      
+
       if (repoIds && !repoIds.includes(id))return null;
 
       return (
         <li key={key} onClick={this.showReadme.bind(this,login,name,id)}>
-          {repo.name}
+          {repo.owner.login}/{repo.name}
         </li>
       );
     });

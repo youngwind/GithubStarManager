@@ -4,6 +4,7 @@
  **********************************************/
 
 import React from 'react';
+import './index.scss';
 
 const GroupNav = React.createClass({
 
@@ -15,11 +16,11 @@ const GroupNav = React.createClass({
 
   render: function () {
     return (
-      <div>
-        <h3>分组</h3>
+      <div className='group-nav-container'>
+        <h3>分组:</h3>
         {this.returnGroups()}
         {this.state.addActive ?
-          <input type="text" placeholder="input something" onKeyUp={this.handleAddRepoGroup}/> :
+          <input autoFocus type="text" placeholder="group name" onKeyUp={this.handleAddRepoGroup} className='add-group-input'/> :
           <button onClick={this.showAddInput}>添加分类</button>
         }
       </div>
@@ -47,7 +48,7 @@ const GroupNav = React.createClass({
     let ungroupedRepoNumber = repo.starred.length - groupedRepoNumber;
 
     return (
-      <ul>
+      <ul className='group-nav-list'>
         <li onClick={this.searchThisGroup.bind(this,0)}>
           <span>未分组</span>
           <span>({ungroupedRepoNumber})</span>

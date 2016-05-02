@@ -20,10 +20,9 @@ const Index = React.createClass({
   render: function () {
 
     return (
-      <div>
-        <div className='clear-fix'>
+      <div className='index-container'>
+        <div className='clear-fix top-area-container'>
           <UserInfo {...this.props}/>
-          <SearchRepo />
         </div>
         <div className='classify-nav-container'>
           <GroupNav {...this.props}/>
