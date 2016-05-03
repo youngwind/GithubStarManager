@@ -18,7 +18,7 @@ router.get('/:userName/starred', function (req, res, next) {
     while (true) {
 
       // 此处可以用并发,有待优化
-      data = await fetch(`${Config.githubApi}/users/${userName}/starred?pageSize=100&page=${page}`)
+      data = await fetch(`${Config.githubApi}/users/${userName}/starred?per_page=${Config.perPage}&page=${page}`)
         .then(ret => ret.json());
 
       if (!data.length) break;

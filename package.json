@@ -1,5 +1,5 @@
 {
-  "name": "electron-quick-start",
+  "name": "github-star-manager",
   "version": "1.0.0",
   "description": "A minimal Electron application",
   "main": "main.js",
@@ -25,5 +25,6 @@
   "homepage": "https://github.com/electron/electron-quick-start#readme",
   "devDependencies": {
     "electron-prebuilt": "^0.37.0"
-  }
+  },
+  "productName": "github-star-manager"
 }

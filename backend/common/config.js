@@ -6,13 +6,15 @@
 module.exports = {
 
   realGithubApi: 'https://api.github.com',
-  
-  githubApi:'http://localhost:9999/github',
+
+
+  githubApi: 'https://api.github.com',
+  perPage: 100,
 
   port: 10987,
 
   // 数据库配置
-  mongo:{
-    url:'mongodb://localhost:27017/github'
+  mongo: {
+    url: 'mongodb://localhost:27017/github'
   }
 };

@@ -26,16 +26,18 @@ const Index = React.createClass({
         <div className='clear-fix top-area-container'>
           <UserInfo {...this.props}/>
         </div>
-        <div className='classify-nav-container'>
-          <GroupNav {...this.props}/>
-        </div>
-        <RepoList {...this.props}/>
-        <div className='repo-detail-container'>
-          <div className="repo-basic-info-container">
-            <SetGroup {...this.props}/>
-            {this.returnRepoUrl()}
+        <div className='clear-fix index-bottom-container'>
+          <div className='classify-nav-container'>
+            <GroupNav {...this.props}/>
           </div>
-          <ReadMe {...this.props} />
+          <RepoList {...this.props}/>
+          <div className='repo-detail-container'>
+            <div className="repo-basic-info-container">
+              <SetGroup {...this.props}/>
+              {this.returnRepoUrl()}
+            </div>
+            <ReadMe {...this.props} />
+          </div>
         </div>
       </div>
     );
@@ -54,9 +56,7 @@ const Index = React.createClass({
 
   returnRepoUrl: function () {
     let {params:{repoId}, repo:{starred}} = this.props;
-    console.log(repoId)
     let currentRepo = find(starred, {id: repoId * 1});
-    console.log(currentRepo)
 
     if (!currentRepo) return null;
     return (

@@ -37,8 +37,6 @@ const GroupNav = React.createClass({
     let groups = group.map((group, key)=> {
       let length = group.repoIds.length;
       groupedRepoNumber = groupedRepoNumber + length;
-      console.log(group);
-      console.log(selectedGroupId);
       return (
         <li key={key} onClick={this.searchThisGroup.bind(this,group.id)}
             className={selectedGroupId === group.id ? 'active':''}>
